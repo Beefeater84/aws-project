@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import './App.css';
-import {Button, Flex, Input, PasswordField} from "@aws-amplify/ui-react";
+import {Authenticator, Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
-import MockUsers from "./application/mockUsers/mock-users";
 import mockUsers from "./application/mockUsers/mock-users";
 
+
+import awsExports from './aws-exports';
+import {Amplify} from "aws-amplify";
+import signIn from "./shared/utilities/sign-in";
+
+Amplify.configure(awsExports);
+
 function App() {
+
+
     const [user, setUser] = React.useState<User>({
         login: "",
         password: "",
@@ -14,6 +22,31 @@ function App() {
 
     const onSelectUserHandler = (user: User) => {
         setUser(user)
+    }
+
+    const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        console.log("onSignInHandler")
+        await signIn({
+            username: user.login,
+            password: user.password,
+        })
+    }
+
+    const formFields = {
+        signIn: {
+            username: {
+                placeholder: 'login',
+                isRequired: true,
+                labelHidden: true,
+            },
+            password: {
+                placeholder: 'password',
+                isRequired: true,
+                labelHidden: true,
+            }
+        },
+        signUp: {}
     }
 
     return (
@@ -37,6 +70,15 @@ function App() {
                     <li>Red Admin</li>
                     <li>Red User</li>
                 </ul>
+
+                <Authenticator
+                    loginMechanisms={['email']}
+                    formFields={formFields}
+                    hideSignUp={true}
+                >
+
+                </Authenticator>
+
                 <Flex as="form" direction="column">
                     <Input
                         disabled={true}
@@ -55,8 +97,8 @@ function App() {
                         name="password"
                         value={user.password}
                     />
-                    <Button type="submit" onClick={(e) => e.preventDefault()}>
-                        Login
+                    <Button type="submit" onClick={onSignInHandler}>
+                        Sign in
                     </Button>
                 </Flex>
             </section>
