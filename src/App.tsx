@@ -1,19 +1,23 @@
-import React, {MouseEvent} from 'react';
+import React, {MouseEvent, useEffect} from 'react';
 import './App.css';
-import {Authenticator, Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
+import {Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
 import mockUsers from "./application/mockUsers/mock-users";
+import { redirect } from "react-router-dom";
 
 
 import awsExports from './aws-exports';
-import {Amplify} from "aws-amplify";
+import {Amplify, Auth} from "aws-amplify";
 import signIn from "./shared/utilities/sign-in";
+import {useNavigate} from "react-router-dom";
 
 Amplify.configure(awsExports);
 
 function App() {
 
+    const {route} = useAuthenticator(context => [context.route])
+    const navigate = useNavigate();
 
     const [user, setUser] = React.useState<User>({
         login: "",
@@ -24,13 +28,21 @@ function App() {
         setUser(user)
     }
 
+    const onSignOutHandler = async () => {
+        Auth.signOut()
+    }
+
     const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        console.log("onSignInHandler")
-        await signIn({
+        const res = await signIn({
             username: user.login,
             password: user.password,
         })
+
+        if (res) {
+            console.log("res", res)
+            return redirect("/s")
+        }
     }
 
     const formFields = {
@@ -47,6 +59,15 @@ function App() {
             }
         },
         signUp: {}
+    }
+
+    if (route === "authenticated") {
+        return (
+            <Button onClick={onSignOutHandler}>
+                Sign Out
+            </Button>
+            )
+
     }
 
     return (
@@ -71,13 +92,13 @@ function App() {
                     <li>Red User</li>
                 </ul>
 
-                <Authenticator
-                    loginMechanisms={['email']}
-                    formFields={formFields}
-                    hideSignUp={true}
-                >
+                {/*<Authenticator*/}
+                {/*    loginMechanisms={['email']}*/}
+                {/*    formFields={formFields}*/}
+                {/*    hideSignUp={true}*/}
+                {/*>*/}
 
-                </Authenticator>
+                {/*</Authenticator>*/}
 
                 <Flex as="form" direction="column">
                     <Input

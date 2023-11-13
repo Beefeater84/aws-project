@@ -7,7 +7,9 @@ type SignInParameters = {
 
 export default async function signIn({ username, password }: SignInParameters) {
     try {
-        const user = await Auth.signIn(username, password);
+        const s = await Auth.signIn(username, password);
+        return s
+
     } catch (error) {
         console.log('error signing in', error);
     }
