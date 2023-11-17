@@ -26,5 +26,30 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "function": {
+    "DemoFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_DemoFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "DemoFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_DemoFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "DemoFunction"
+        }
+      ]
+    }
   }
 }
