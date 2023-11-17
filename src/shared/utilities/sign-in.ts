@@ -1,13 +1,8 @@
-import { Auth } from 'aws-amplify';
+import { signIn, type SignInInput } from 'aws-amplify/auth';
 
-type SignInParameters = {
-    username: string;
-    password: string;
-};
-
-export default async function signIn({ username, password }: SignInParameters) {
+export default async function signInHandler({ username, password }: SignInInput) {
     try {
-        await Auth.signIn(username, password);
+        await signIn({ username, password });
     } catch (error) {
         console.log('error signing in', error);
     }

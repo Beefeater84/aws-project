@@ -6,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {RouterProvider,} from "react-router-dom";
 import {router} from "./application/routes/routes";
 import {Authenticator} from "@aws-amplify/ui-react";
-
+import { Amplify } from 'aws-amplify';
+import amplifyconfig from './amplifyconfiguration.json';
+Amplify.configure(amplifyconfig);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
