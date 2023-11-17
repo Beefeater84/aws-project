@@ -1,23 +1,21 @@
-import React, {MouseEvent, useEffect} from 'react';
+import React, {MouseEvent} from 'react';
 import './App.css';
 import {Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
 import mockUsers from "./application/mockUsers/mock-users";
-import { redirect } from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 
 import awsExports from './aws-exports';
-import {Amplify, Auth} from "aws-amplify";
+import {Amplify} from "aws-amplify";
 import signIn from "./shared/utilities/sign-in";
-import {useNavigate} from "react-router-dom";
 
 Amplify.configure(awsExports);
 
 function App() {
 
-    const {route} = useAuthenticator(context => [context.route])
-    const navigate = useNavigate();
+    const {authStatus} = useAuthenticator(context => [context.authStatus])
 
     const [user, setUser] = React.useState<User>({
         login: "",
@@ -28,51 +26,25 @@ function App() {
         setUser(user)
     }
 
-    const onSignOutHandler = async () => {
-        Auth.signOut()
-    }
+
 
     const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        const res = await signIn({
+        await signIn({
             username: user.login,
             password: user.password,
         })
-
-        if (res) {
-            console.log("res", res)
-            return redirect("/s")
-        }
     }
 
-    const formFields = {
-        signIn: {
-            username: {
-                placeholder: 'login',
-                isRequired: true,
-                labelHidden: true,
-            },
-            password: {
-                placeholder: 'password',
-                isRequired: true,
-                labelHidden: true,
-            }
-        },
-        signUp: {}
+
+    if (authStatus === "authenticated") {
+        return <Navigate to="./blue-team" />
     }
 
-    if (route === "authenticated") {
-        return (
-            <Button onClick={onSignOutHandler}>
-                Sign Out
-            </Button>
-            )
-
-    }
 
     return (
         <Flex>
-            <section>
+            <section className="container">
                 <ul>
                     <Button
                         size="small"
@@ -87,18 +59,6 @@ function App() {
                         Blue User
                     </Button>
                 </ul>
-                <ul>
-                    <li>Red Admin</li>
-                    <li>Red User</li>
-                </ul>
-
-                {/*<Authenticator*/}
-                {/*    loginMechanisms={['email']}*/}
-                {/*    formFields={formFields}*/}
-                {/*    hideSignUp={true}*/}
-                {/*>*/}
-
-                {/*</Authenticator>*/}
 
                 <Flex as="form" direction="column">
                     <Input
