@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import './App.css';
-import {Button, Flex, Input, PasswordField} from "@aws-amplify/ui-react";
+import {Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
-import MockUsers from "./application/mockUsers/mock-users";
 import mockUsers from "./application/mockUsers/mock-users";
+import {Navigate} from "react-router-dom";
+
+
+import awsExports from './aws-exports';
+import {Amplify} from "aws-amplify";
+import signIn from "./shared/utilities/sign-in";
+
+Amplify.configure(awsExports);
 
 function App() {
+
+    const {authStatus} = useAuthenticator(context => [context.authStatus])
+
     const [user, setUser] = React.useState<User>({
         login: "",
         password: "",
@@ -16,9 +26,25 @@ function App() {
         setUser(user)
     }
 
+
+
+    const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        await signIn({
+            username: user.login,
+            password: user.password,
+        })
+    }
+
+
+    if (authStatus === "authenticated") {
+        return <Navigate to="./blue-team" />
+    }
+
+
     return (
         <Flex>
-            <section>
+            <section className="container">
                 <ul>
                     <Button
                         size="small"
@@ -33,10 +59,7 @@ function App() {
                         Blue User
                     </Button>
                 </ul>
-                <ul>
-                    <li>Red Admin</li>
-                    <li>Red User</li>
-                </ul>
+
                 <Flex as="form" direction="column">
                     <Input
                         disabled={true}
@@ -55,8 +78,8 @@ function App() {
                         name="password"
                         value={user.password}
                     />
-                    <Button type="submit" onClick={(e) => e.preventDefault()}>
-                        Login
+                    <Button type="submit" onClick={onSignInHandler}>
+                        Sign in
                     </Button>
                 </Flex>
             </section>
