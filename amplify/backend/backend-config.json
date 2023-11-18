@@ -103,22 +103,6 @@
           "resourceName": "awstestc43f4ddb"
         }
       ]
-    },
-    "AMPLIFY_function_DemoFunction_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "DemoFunction"
-        }
-      ]
-    },
-    "AMPLIFY_function_DemoFunction_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "DemoFunction"
-        }
-      ]
     }
   }
 }
