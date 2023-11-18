@@ -5,13 +5,8 @@ import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
 import mockUsers from "./application/mockUsers/mock-users";
 import {Navigate} from "react-router-dom";
+import signInHandler from "./shared/utilities/sign-in";
 
-
-import awsExports from './aws-exports';
-import {Amplify} from "aws-amplify";
-import signIn from "./shared/utilities/sign-in";
-
-Amplify.configure(awsExports);
 
 function App() {
 
@@ -30,7 +25,7 @@ function App() {
 
     const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        await signIn({
+        await signInHandler({
             username: user.login,
             password: user.password,
         })

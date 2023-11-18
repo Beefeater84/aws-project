@@ -13,7 +13,20 @@
     },
     "categories": {
       "auth": {
-        "awstestae2bb98a": {}
+        "test-uset-pool": {},
+        "awstestc43f4ddb": {
+          "userPoolId": "eu-north-1_vs0adKeNQ",
+          "userPoolName": "test-uset-pool",
+          "webClientId": "mk0te7mlc0isa46au8vufql1u",
+          "nativeClientId": "mk0te7mlc0isa46au8vufql1u",
+          "identityPoolId": "eu-north-1:814f9420-d1f4-4334-8ffc-0c3eaef063e0",
+          "identityPoolName": "aws-identity-pull",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::254180359618:role/amplify-awstest-dev-171846-authRole",
+          "authRoleName": "amplify-awstest-dev-171846-authRole",
+          "unauthRoleArn": "arn:aws:iam::254180359618:role/amplify-awstest-dev-171846-unauthRole",
+          "unauthRoleName": "amplify-awstest-dev-171846-unauthRole"
+        }
       },
       "function": {
         "DemoFunction": {
