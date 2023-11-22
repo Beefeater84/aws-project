@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-awstest-dev-171846-unauthRole",
       "StackName": "amplify-awstest-dev-171846",
       "StackId": "arn:aws:cloudformation:eu-north-1:254180359618:stack/amplify-awstest-dev-171846/f2c337b0-7d80-11ee-aa60-06a96fbb9da0",
-      "AmplifyAppId": "d39o38cbs7ve7u"
+      "AmplifyAppId": "d39o38cbs7ve7u",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-awstest-dev-171846-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -30,8 +31,15 @@
       "function": {
         "DemoFunction": {
           "deploymentBucketName": "amplify-awstest-dev-171846-deployment",
-          "s3Key": "amplify-builds/DemoFunction-6f7036506e32326b6846-build.zip"
+          "s3Key": "amplify-builds/DemoFunction-72574b62525678643459-build.zip"
+        },
+        "csv": {
+          "deploymentBucketName": "amplify-awstest-dev-171846-deployment",
+          "s3Key": "amplify-builds/csv-326b797457594d2b3263-build.zip"
         }
+      },
+      "api": {
+        "apiawstest": {}
       }
     }
   }

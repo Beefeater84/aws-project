@@ -1,4 +1,20 @@
 {
+  "api": {
+    "apiawstest": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "csv"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "awstestc43f4ddb": {
       "customAuth": false,
@@ -10,6 +26,11 @@
   },
   "function": {
     "DemoFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "csv": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -117,6 +138,22 @@
         {
           "category": "function",
           "resourceName": "DemoFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_csv_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "csv"
+        }
+      ]
+    },
+    "AMPLIFY_function_csv_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "csv"
         }
       ]
     }
