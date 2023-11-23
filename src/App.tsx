@@ -1,6 +1,6 @@
 import React, {MouseEvent} from 'react';
 import './App.css';
-import {Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
+import {Authenticator, Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
 import mockUsers from "./application/mockUsers/mock-users";
@@ -35,6 +35,17 @@ function App() {
     if (authStatus === "authenticated") {
         return <Navigate to="./blue-team" />
     }
+
+    // return (
+    //     <Authenticator>
+    //         {({ signOut, user }) => (
+    //             <main>
+    //                 <h1>Hello</h1>
+    //                 <button onClick={signOut}>Sign out</button>
+    //             </main>
+    //         )}
+    //     </Authenticator>
+    // )
 
 
     return (
