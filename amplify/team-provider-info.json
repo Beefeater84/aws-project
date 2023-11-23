@@ -40,6 +40,9 @@
       },
       "api": {
         "apiawstest": {}
+      },
+      "storage": {
+        "awsteststore": {}
       }
     }
   }
