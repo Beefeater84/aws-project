@@ -9,7 +9,7 @@ import {Navigate} from "react-router-dom";
 import signInHandler from "./shared/utilities/sign-in";
 
 
-import {get} from "aws-amplify/api";
+import {get, post} from "aws-amplify/api";
 
 
 function App() {
@@ -52,12 +52,12 @@ function App() {
 
     const getDataHandler = async () => {
         try {
-            const restOperation = get({
+            const restOperation = post({
                 apiName: 'apiawstest',
                 path: '/get-file-csv'
             });
             const response = await restOperation.response;
-            console.log('GET call succeeded: ', response);
+            console.log('GET call succeeded: ', await response.body.json())
         } catch (error) {
             console.log('GET call failed: ', error);
         }

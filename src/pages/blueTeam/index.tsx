@@ -1,6 +1,6 @@
 import {Button} from "@aws-amplify/ui-react";
 
-import { get } from 'aws-amplify/api';
+import { get, post } from 'aws-amplify/api';
 import handleSignOut from "../../shared/utilities/sign-out";
 
 export default function BlueTeamIndex() {
@@ -20,7 +20,7 @@ export default function BlueTeamIndex() {
 
     const getTextHandler = async () => {
         try {
-            const restOperation = get({
+            const restOperation = post({
                 apiName: 'apiawstest',
                 path: '/get-file-csv'
             });
