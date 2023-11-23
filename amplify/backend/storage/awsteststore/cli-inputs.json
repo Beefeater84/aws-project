@@ -1,0 +1,12 @@
+{
+  "resourceName": "awsteststore",
+  "policyUUID": "012bb6fa",
+  "bucketName": "awstest23dbba073d2a42158de8dc25cff0e925",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

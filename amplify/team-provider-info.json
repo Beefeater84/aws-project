@@ -31,11 +31,11 @@
       "function": {
         "DemoFunction": {
           "deploymentBucketName": "amplify-awstest-dev-171846-deployment",
-          "s3Key": "amplify-builds/DemoFunction-72574b62525678643459-build.zip"
+          "s3Key": "amplify-builds/DemoFunction-39315672594778545874-build.zip"
         },
         "csv": {
           "deploymentBucketName": "amplify-awstest-dev-171846-deployment",
-          "s3Key": "amplify-builds/csv-326b797457594d2b3263-build.zip"
+          "s3Key": "amplify-builds/csv-42496e693379444e674d-build.zip"
         }
       },
       "api": {

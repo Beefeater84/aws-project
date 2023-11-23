@@ -1,4 +1,5 @@
 import {Button} from "@aws-amplify/ui-react";
+
 import { get } from 'aws-amplify/api';
 import handleSignOut from "../../shared/utilities/sign-out";
 
@@ -11,7 +12,20 @@ export default function BlueTeamIndex() {
                 path: '/get-file-csv'
             });
             const response = await restOperation.response;
-            console.log('GET call succeeded: ', response);
+            console.log('GET call succeeded: ', await response.body.json())
+        } catch (error) {
+            console.log('GET call failed: ', error);
+        }
+    }
+
+    const getTextHandler = async () => {
+        try {
+            const restOperation = get({
+                apiName: 'apiawstest',
+                path: '/get-file-csv'
+            });
+            const response = await restOperation.response;
+            console.log('GET call succeeded: ', await response.body.json())
         } catch (error) {
             console.log('GET call failed: ', error);
         }
@@ -33,6 +47,13 @@ export default function BlueTeamIndex() {
                         onClick={getDataHandler}
                     >
                         Get data!
+                    </Button>
+
+                    <Button
+                        loadingText=""
+                        onClick={getTextHandler}
+                    >
+                        Get text
                     </Button>
                 </div>
             </div>
