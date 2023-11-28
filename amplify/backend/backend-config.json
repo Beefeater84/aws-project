@@ -30,7 +30,17 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "awstestf3732cbd": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "csv": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "serverless": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -141,6 +151,22 @@
         }
       ]
     },
+    "AMPLIFY_function_awstestf3732cbd_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "awstestf3732cbd"
+        }
+      ]
+    },
+    "AMPLIFY_function_awstestf3732cbd_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "awstestf3732cbd"
+        }
+      ]
+    },
     "AMPLIFY_function_csv_deploymentBucketName": {
       "usedBy": [
         {
@@ -154,6 +180,22 @@
         {
           "category": "function",
           "resourceName": "csv"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverless_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverless"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverless_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverless"
         }
       ]
     }
