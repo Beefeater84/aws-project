@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "DemoFunction",
+            "serverless",
             {
               "Fn::Join": [
                 "",
                 [
-                  "DemoFunction",
+                  "serverless",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "awstestLambdaRole4fb19b9d",
+            "awstestLambdaRole85f77f7b",
             {
               "Fn::Join": [
                 "",
                 [
-                  "awstestLambdaRole4fb19b9d",
+                  "awstestLambdaRole85f77f7b",
                   "-",
                   {
                     "Ref": "env"

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "paths": {
+    "/get-file-csv": {
+      "name": "/get-file-csv",
+      "lambdaFunction": "csv",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
+    }
+  }
+}
