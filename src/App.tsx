@@ -1,11 +1,15 @@
 import React, {MouseEvent} from 'react';
 import './App.css';
-import {Authenticator, Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
+
+import {Button, Flex, Input, PasswordField, useAuthenticator} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import {User} from "./application/mockUsers/types";
 import mockUsers from "./application/mockUsers/mock-users";
 import {Navigate} from "react-router-dom";
 import signInHandler from "./shared/utilities/sign-in";
+
+
+import {get, post} from "aws-amplify/api";
 
 
 function App() {
@@ -22,7 +26,6 @@ function App() {
     }
 
 
-
     const onSignInHandler = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         await signInHandler({
@@ -33,7 +36,7 @@ function App() {
 
 
     if (authStatus === "authenticated") {
-        return <Navigate to="./blue-team" />
+        return <Navigate to="./blue-team"/>
     }
 
     // return (
@@ -46,6 +49,19 @@ function App() {
     //         )}
     //     </Authenticator>
     // )
+
+    const getDataHandler = async () => {
+        try {
+            const restOperation = post({
+                apiName: 'apiawstest',
+                path: '/get-file-csv'
+            });
+            const response = await restOperation.response;
+            console.log('GET call succeeded: ', await response.body.json())
+        } catch (error) {
+            console.log('GET call failed: ', error);
+        }
+    }
 
 
     return (
@@ -65,6 +81,13 @@ function App() {
                         Blue User
                     </Button>
                 </ul>
+
+                <Button
+                    loadingText=""
+                    onClick={getDataHandler}
+                >
+                    Get data!
+                </Button>
 
                 <Flex as="form" direction="column">
                     <Input
